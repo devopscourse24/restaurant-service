@@ -1,0 +1,3 @@
+### GET restaurant by id
+GET {{host}}/restaurant/fetchById/52
+Accept: application/json

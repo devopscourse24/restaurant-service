@@ -1,0 +1,11 @@
+### Add restaurant
+POST {{host}}/restaurant/addRestaurant
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Le Gourmet 2",
+  "address": "123 rue de la Gastronomie",
+  "city": "Lyon",
+  "description": "Un petit bijou de la cuisine française traditionnelle."
+}

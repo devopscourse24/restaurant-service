@@ -1,0 +1,24 @@
+eureka:
+  client:
+    service-url:
+      # Cette configuration spécifie l'URL que les clients Eureka utiliseront pour s'enregistrer et localiser les services.
+      defaultZone: http://eureka-0.eureka-service.default.svc.cluster.local:8761/eureka
+  instance:
+    # Indique à Eureka de préférer l'adresse IP de l'instance lors de l'enregistrement plutôt que son nom d'hôte.
+    prefer-ip-address: true
+    # Définit le nom d'hôte de cette instance Eureka, qui sera utilisé lors de l'enregistrement avec le serveur Eureka.
+    hostname: eureka-0
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/restaurantdb  # URL de connexion JDBC pour la base de données MySQL.
+    # AWS RDS Url: elfn-rds.c1ykoeyyew62.us-east-2.rds.amazonaws.com:3306/restaurantdb
+    password: root  # Mot de passe pour la base de données.
+    username:   # Nom d'utilisateur pour la connexion à la base de données.
+    driver-class-name: com.mysql.cj.jdbc.Driver  # Classe du pilote JDBC pour MySQL.
+#  jpa:
+#    hibernate:
+#      ddl-auto: update  # Stratégie de gestion du schéma de base de données (ici, mise à jour sans détruire les données).
+#    show-sql: true  # Si true, Hibernate affiche les requêtes SQL dans les logs.
+#    database-platform: org.hibernate.dialect.MySQL8Dialect  # Dialecte spécifique pour MySQL avec moteur InnoDB.

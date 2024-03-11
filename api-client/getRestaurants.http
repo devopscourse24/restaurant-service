@@ -1,0 +1,3 @@
+### Get restaurant list
+GET {{host}}/restaurant/fetchAllRestaurants
+Accept: application/json
