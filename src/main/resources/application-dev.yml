@@ -13,7 +13,7 @@ eureka:
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/restaurantdb  # URL de connexion JDBC pour la base de données MySQL.
-    # AWS RDS Url: elfn-rds.c1ykoeyyew62.us-east-2.rds.amazonaws.com:3306/restaurantdb
+    # AWS RDS Url: mysql-db.cpumcqsay9vt.us-east-2.rds.amazonaws.com:3306/restaurantdb
     password: root  # Mot de passe pour la base de données.
     username:   # Nom d'utilisateur pour la connexion à la base de données.
     driver-class-name: com.mysql.cj.jdbc.Driver  # Classe du pilote JDBC pour MySQL.
