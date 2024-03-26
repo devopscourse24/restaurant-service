@@ -8,6 +8,14 @@ public class RestaurantDTO {
     private String city;
     private String description;
 
+    public RestaurantDTO(int id, String name, String address, String city, String description) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.description = description;
+    }
+
     public int getId() {
         return id;
     }
