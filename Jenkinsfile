@@ -35,7 +35,7 @@ pipeline {
    stage('Check code coverage') {
             steps {
                 script {
-                    def token = "squ_32789bcdadb6e4337e432d6cbc100c2a1a14fde5"
+                    def token = "squ_5b370ec95ee3d99061daf390fc0184f6e5967e50"
                     def sonarQubeUrl = "http://3.142.121.203:9000/api"
                     def componentKey = "com.elfn:restaurantlisting"
                     def coverageThreshold = 80.0
