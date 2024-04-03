@@ -114,4 +114,24 @@ class RestaurantServiceTest {
         // Verify that the repository method was called
         verify(restaurantRepo, times(1)).findById(mockRestaurantId);
     }
+
+    @Test
+    public void testAddRestaurantInDBWhenDbIsDown() {
+        // Créer un DTO de restaurant factice pour l'ajout
+        RestaurantDTO newRestaurantDTO = new RestaurantDTO(0, "Nouveau Restaurant", "Nouvelle Adresse", "Nouvelle Ville", "Nouvelle Description");
+
+        // Simuler un comportement de la base de données échouant lors de l'opération de sauvegarde
+        when(restaurantRepo.save(any(Restaurant.class))).thenThrow(new RuntimeException("Accès à la base de données impossible"));
+
+        // Essayer d'appeler la méthode du service et vérifier qu'une exception est levée
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            restaurantService.addRestaurantInDB(newRestaurantDTO);
+        });
+
+        // Vérifier le message de l'exception
+        assertEquals("Accès à la base de données impossible", exception.getMessage());
+
+        // Vérifier que la méthode du repository a bien été appelée
+        verify(restaurantRepo, times(1)).save(any(Restaurant.class));
+    }
 }
