@@ -26,10 +26,10 @@ pipeline {
     }
 
     stage('SonarQube Analysis') {
-  steps {
-    sh 'mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.host.url=http://3.142.121.203:9000/ -Dsonar.login=squ_5b370ec95ee3d99061daf390fc0184f6e5967e50'
-  }
-}
+     steps {
+       sh 'mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.host.url=http://3.142.121.203:9000/ -Dsonar.login=squ_5b370ec95ee3d99061daf390fc0184f6e5967e50'
+        }
+       }
 
 
    stage('Check code coverage') {
@@ -60,40 +60,43 @@ pipeline {
         }
 
 
-   stage('Docker Build and Push') {
-            steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh 'docker build -t  elfn/restaurant-srv:${VERSION} .'
-                sh 'docker push  elfn/restaurant-srv:${VERSION}'
+
+      stage('Docker Build and Push') {
+      steps {
+          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+          sh 'docker build -t  elfn/restaurant-srv:${VERSION} .'
+          sh 'docker push  elfn/restaurant-srv:${VERSION}'
+      }
+    }
+
+
+     stage('Cleanup Workspace') {
+      steps {
+        deleteDir()
+
+      }
+    }
+
+
+
+    stage('Update Image Tag in GitOps') {
+      steps {
+         checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[ credentialsId: 'git-ssh', url: 'git@github.com:devopscourse24/deployments.git']])
+        script {
+       sh '''
+          sed -i "s/image:.*/image: elfn\\/restaurant-srv:${VERSION}/" aws/restaurant-manifest.yaml
+        '''
+          sh 'git checkout master'
+          sh 'git add .'
+          sh 'git commit -m "Update image tag"'
+        sshagent(['git-ssh'])
+            {
+                  sh('git push')
             }
+        }
+      }
     }
 
-
-   stage('Cleanup Workspace') {
-    steps {
-      deleteDir(
-    }
-   }
-
-
-
-   stage('Update Image Tag in GitOps') {
-     steps {
-        checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[ credentialsId: 'git-ssh', url: 'git@github.com:devopscourse24/deployments.git']])
-       script {
-      sh '''
-         sed -i "s/image:.*/image: elfn\\/restaurant-srv:${VERSION}/" aws/restaurant-manifest.yaml
-       '''
-         sh 'git checkout master'
-         sh 'git add .'
-         sh 'git commit -m "Update image tag"'
-       sshagent(['git-ssh'])
-           {
-                 sh('git push')
-           }
-       }
-     }
-   }
   }
 
 }
