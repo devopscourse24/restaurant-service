@@ -1,4 +1,4 @@
-package com.elfn.restaurantListing.dto;
+package com.elfn.restaurantlisting.dto;
 
 
 public class RestaurantDTO {

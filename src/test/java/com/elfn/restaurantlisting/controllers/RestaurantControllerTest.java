@@ -1,7 +1,7 @@
-package com.elfn.restaurantListing.controllers;
+package com.elfn.restaurantlisting.controllers;
 
-import com.elfn.restaurantListing.dto.RestaurantDTO;
-import com.elfn.restaurantListing.services.RestaurantService;
+import com.elfn.restaurantlisting.dto.RestaurantDTO;
+import com.elfn.restaurantlisting.services.RestaurantService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,22 +18,19 @@ import static org.mockito.Mockito.*;
 
 class RestaurantControllerTest {
 
-    // What we want to call is "InjectMocks"
     @InjectMocks
     RestaurantController restaurantController;
 
-    // What we want to do not call is "Mock"
     @Mock
     RestaurantService restaurantService;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         MockitoAnnotations.openMocks(this); //in order for Mock and InjectMocks annotations to take effect, you need to call MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void testFetchAllRestaurants() {
-
+     void testFetchAllRestaurants(){
         // Mock the service behavior
         List<RestaurantDTO> mockRestaurants = Arrays.asList(
                 new RestaurantDTO(1, "Restaurant 1", "Address 1", "city 1", "Desc 1"),
@@ -50,11 +47,10 @@ class RestaurantControllerTest {
 
         // Verify that the service method was called
         verify(restaurantService, times(1)).findAllRestaurants();
-
     }
 
     @Test
-    public void testSaveRestaurant() {
+     void testSaveRestaurant() {
         // Create a mock restaurant to be saved
         RestaurantDTO mockRestaurant =  new RestaurantDTO(1, "Restaurant 1", "Address 1", "city 1", "Desc 1");
 
@@ -73,7 +69,7 @@ class RestaurantControllerTest {
     }
 
     @Test
-    public void testFindRestaurantById() {
+     void testFindRestaurantById() {
         // Create a mock restaurant ID
         Integer mockRestaurantId = 1;
 
@@ -93,4 +89,5 @@ class RestaurantControllerTest {
         // Verify that the service method was called
         verify(restaurantService, times(1)).fetchRestaurantById(mockRestaurantId);
     }
+
 }

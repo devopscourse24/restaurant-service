@@ -1,7 +1,7 @@
-package com.elfn.restaurantListing.mappers;
+package com.elfn.restaurantlisting.mappers;
 
-import com.elfn.restaurantListing.dto.RestaurantDTO;
-import com.elfn.restaurantListing.entities.Restaurant;
+import com.elfn.restaurantlisting.dto.RestaurantDTO;
+import com.elfn.restaurantlisting.entities.Restaurant;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

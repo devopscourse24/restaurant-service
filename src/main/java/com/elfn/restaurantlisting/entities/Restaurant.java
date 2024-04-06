@@ -1,4 +1,4 @@
-package com.elfn.restaurantListing.entities;
+package com.elfn.restaurantlisting.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

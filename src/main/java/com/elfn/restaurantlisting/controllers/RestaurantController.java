@@ -1,7 +1,7 @@
-package com.elfn.restaurantListing.controllers;
+package com.elfn.restaurantlisting.controllers;
 
-import com.elfn.restaurantListing.dto.RestaurantDTO;
-import com.elfn.restaurantListing.services.RestaurantService;
+import com.elfn.restaurantlisting.dto.RestaurantDTO;
+import com.elfn.restaurantlisting.services.RestaurantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

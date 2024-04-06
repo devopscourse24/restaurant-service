@@ -1,16 +1,15 @@
-package com.elfn.restaurantListing.services;
+package com.elfn.restaurantlisting.services;
 
-import com.elfn.restaurantListing.dto.RestaurantDTO;
-import com.elfn.restaurantListing.entities.Restaurant;
-import com.elfn.restaurantListing.mappers.RestaurantMapper;
-import com.elfn.restaurantListing.repositories.RestaurantRepository;
+import com.elfn.restaurantlisting.dto.RestaurantDTO;
+import com.elfn.restaurantlisting.entities.Restaurant;
+import com.elfn.restaurantlisting.mappers.RestaurantMapper;
+import com.elfn.restaurantlisting.repositories.RestaurantRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class RestaurantService {
@@ -23,10 +22,9 @@ public class RestaurantService {
 
 
     public List<RestaurantDTO> findAllRestaurants() {
-
-        List<RestaurantDTO> restaurantDtos = restaurantRepo.findAll().stream().map(RestaurantMapper.INSTANCE::restaurantToRestaurantDTO).collect(Collectors.toList());
-
-        return restaurantDtos;
+        return restaurantRepo.findAll().stream()
+                .map(RestaurantMapper.INSTANCE::restaurantToRestaurantDTO)
+                .toList();
     }
 
     public RestaurantDTO addRestaurantInDB(RestaurantDTO restaurantDTO) {

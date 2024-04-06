@@ -1,4 +1,4 @@
-package com.elfn.restaurantListing;
+package com.elfn.restaurantlisting;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

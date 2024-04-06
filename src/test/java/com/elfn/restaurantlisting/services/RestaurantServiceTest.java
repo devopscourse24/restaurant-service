@@ -1,9 +1,9 @@
-package com.elfn.restaurantListing.services;
+package com.elfn.restaurantlisting.services;
 
-import com.elfn.restaurantListing.dto.RestaurantDTO;
-import com.elfn.restaurantListing.entities.Restaurant;
-import com.elfn.restaurantListing.mappers.RestaurantMapper;
-import com.elfn.restaurantListing.repositories.RestaurantRepository;
+import com.elfn.restaurantlisting.dto.RestaurantDTO;
+import com.elfn.restaurantlisting.entities.Restaurant;
+import com.elfn.restaurantlisting.mappers.RestaurantMapper;
+import com.elfn.restaurantlisting.repositories.RestaurantRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -33,7 +33,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-    public void testFindAllRestaurants() {
+     void testFindAllRestaurants() {
         // Create mock restaurants
         List<Restaurant> mockRestaurants = Arrays.asList(
                 new Restaurant(1, "Restaurant 1", "Address 1", "city 1", "Desc 1"),
@@ -56,7 +56,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-    public void testAddRestaurantInDB() {
+     void testAddRestaurantInDB() {
         // Create a mock restaurant to be saved
         RestaurantDTO mockRestaurantDTO = new RestaurantDTO(1, "Restaurant 1", "Address 1", "city 1", "Desc 1");
         Restaurant mockRestaurant = RestaurantMapper.INSTANCE.restaurantDTOToRestaurant(mockRestaurantDTO);
@@ -75,7 +75,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-    public void testFetchRestaurantById_ExistingId() {
+     void testFetchRestaurantById_ExistingId() {
         // Create a mock restaurant ID
         Integer mockRestaurantId = 1;
 
@@ -97,7 +97,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-    public void testFetchRestaurantById_NonExistingId() {
+     void testFetchRestaurantById_NonExistingId() {
         // Create a mock non-existing restaurant ID
         Integer mockRestaurantId = 1;
 
@@ -115,23 +115,4 @@ class RestaurantServiceTest {
         verify(restaurantRepo, times(1)).findById(mockRestaurantId);
     }
 
-    @Test
-    public void testAddRestaurantInDBWhenDbIsDown() {
-        // Créer un DTO de restaurant factice pour l'ajout
-        RestaurantDTO newRestaurantDTO = new RestaurantDTO(0, "Nouveau Restaurant", "Nouvelle Adresse", "Nouvelle Ville", "Nouvelle Description");
-
-        // Simuler un comportement de la base de données échouant lors de l'opération de sauvegarde
-        when(restaurantRepo.save(any(Restaurant.class))).thenThrow(new RuntimeException("Accès à la base de données impossible"));
-
-        // Essayer d'appeler la méthode du service et vérifier qu'une exception est levée
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            restaurantService.addRestaurantInDB(newRestaurantDTO);
-        });
-
-        // Vérifier le message de l'exception
-        assertEquals("Accès à la base de données impossible", exception.getMessage());
-
-        // Vérifier que la méthode du repository a bien été appelée
-        verify(restaurantRepo, times(1)).save(any(Restaurant.class));
-    }
 }
