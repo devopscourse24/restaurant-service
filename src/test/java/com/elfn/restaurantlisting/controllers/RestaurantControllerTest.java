@@ -30,7 +30,7 @@ class RestaurantControllerTest {
     }
 
     @Test
-     void testFetchAllRestaurants(){
+    public void testFetchAllRestaurants(){
         // Mock the service behavior
         List<RestaurantDTO> mockRestaurants = Arrays.asList(
                 new RestaurantDTO(1, "Restaurant 1", "Address 1", "city 1", "Desc 1"),
@@ -50,7 +50,7 @@ class RestaurantControllerTest {
     }
 
     @Test
-     void testSaveRestaurant() {
+    public void testSaveRestaurant() {
         // Create a mock restaurant to be saved
         RestaurantDTO mockRestaurant =  new RestaurantDTO(1, "Restaurant 1", "Address 1", "city 1", "Desc 1");
 
@@ -69,7 +69,7 @@ class RestaurantControllerTest {
     }
 
     @Test
-     void testFindRestaurantById() {
+    public void testFindRestaurantById() {
         // Create a mock restaurant ID
         Integer mockRestaurantId = 1;
 

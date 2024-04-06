@@ -33,7 +33,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-     void testFindAllRestaurants() {
+    public void testFindAllRestaurants() {
         // Create mock restaurants
         List<Restaurant> mockRestaurants = Arrays.asList(
                 new Restaurant(1, "Restaurant 1", "Address 1", "city 1", "Desc 1"),
@@ -56,7 +56,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-     void testAddRestaurantInDB() {
+    public void testAddRestaurantInDB() {
         // Create a mock restaurant to be saved
         RestaurantDTO mockRestaurantDTO = new RestaurantDTO(1, "Restaurant 1", "Address 1", "city 1", "Desc 1");
         Restaurant mockRestaurant = RestaurantMapper.INSTANCE.restaurantDTOToRestaurant(mockRestaurantDTO);
@@ -75,7 +75,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-     void testFetchRestaurantById_ExistingId() {
+    public void testFetchRestaurantById_ExistingId() {
         // Create a mock restaurant ID
         Integer mockRestaurantId = 1;
 
@@ -97,7 +97,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-     void testFetchRestaurantById_NonExistingId() {
+    public void testFetchRestaurantById_NonExistingId() {
         // Create a mock non-existing restaurant ID
         Integer mockRestaurantId = 1;
 

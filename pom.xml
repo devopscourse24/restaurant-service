@@ -9,14 +9,14 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.elfn</groupId>
-    <artifactId>restaurantListing</artifactId>
+    <artifactId>restaurantlisting</artifactId>
     <version>0.0.1</version>
     <name>restaurantListing</name>
     <description>restaurantListing</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
-        <sonar.exclusions>**/com/elfn/restaurantlisting/dto/** , **/*/com/elfn/restaurantlisting/entities/**, **/*/com/elfn/restaurantlisting/mappers/**, **/*/com/elfn/restaurantlisting/bootstrap/**, **/*/com/elfn/restaurantlisting/controllers/**, **/*/com/elfn/restaurantlisting/services/**/*</sonar.exclusions>
+        <sonar.exclusions>**/com/elfn/restaurantlisting/dto/** , **/*/com/elfn/restaurantlisting/entities/**/*</sonar.exclusions>
     </properties>
     <dependencies>
         <dependency>
